@@ -33,6 +33,11 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
+#begin Level1.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Level1.tmx
+
 #begin Tileset.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -44,9 +49,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Tileset.png
-
-#begin Level1.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:Level1.tmx
 

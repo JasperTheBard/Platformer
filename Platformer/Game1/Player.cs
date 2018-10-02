@@ -12,16 +12,18 @@ namespace Game1
 {
     class Player
     {
-        sprite playerSprite = new sprite();
+        public sprite playerSprite = new sprite();
+
+        Game1 game = null;
         public Player()
         {
 
         }
 
-        public void Load(ContentManager content)
+        public void Load(ContentManager content, Game1 TheGame)
         {
             playerSprite.Load(content, "hero");
-
+            game = TheGame; 
 
         }
         public void Update(float deltaTime)

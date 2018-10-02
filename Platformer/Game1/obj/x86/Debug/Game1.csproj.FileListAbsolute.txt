@@ -50,3 +50,16 @@ C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\obj\x86\Debug\Game
 C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\obj\x86\Debug\Game1.csproj.CoreCompileInputs.cache
 C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\obj\x86\Debug\Game1.exe
 C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\obj\x86\Debug\Game1.pdb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\Tileset.xnb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.dll
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.dll
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.dll
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Newtonsoft.Json.dll
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.pdb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.xml
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.pdb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.xml
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.pdb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.xml
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Newtonsoft.Json.xml
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\Level1.xnb

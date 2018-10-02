@@ -11,8 +11,8 @@ namespace Game1
 {
     class sprite
     {
-        new Vector2 position = Vector2.Zero;
-        new Vector2 offSet = Vector2.Zero;
+        public Vector2 position = Vector2.Zero;
+        public Vector2 offSet = Vector2.Zero;
 
         Texture2D texture;
 
