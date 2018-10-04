@@ -27,21 +27,22 @@ namespace Game1
             //not colliding
         }
 
-        bool CheckForTile(Vector2 coordinates) //checks if there is a tile at the specified coordinate
+        bool CheckForTile(Vector2 coordinates) // Checks if there is a tile at the specified coordinates
         {
             int column = (int)coordinates.X;
             int row = (int)coordinates.Y;
 
-            if (column < 0 || column < game.levelTileWidth -1)
+            if (column < 0 || column > game.levelTileWidth - 1)
             {
                 return false;
             }
-            if (row < 0 || row < game.levelTileHeight - 1)
+            if (row < 0 || row > game.levelTileHeight - 1)
             {
                 return true;
             }
 
             sprite tileFound = game.levelGrid[column, row];
+
             if (tileFound != null)
             {
                 return true;
@@ -49,109 +50,111 @@ namespace Game1
 
             return false;
         }
-
-        sprite CollideLeft(sprite hero, Vector2 tileIndex, sprite playerPredictions)
+        sprite CollideLeft(sprite hero, Vector2 tileIndex, sprite playerPrediction)
         {
             sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
-            if (IsColliding(playerPredictions, tile) == true && hero.velocity.X < 0)
+            if (IsColliding(playerPrediction, tile) == true && hero.velocity.X < 0)
             {
                 hero.position.X = tile.rightEdge + hero.offSet.X;
                 hero.velocity.X = 0;
             }
+
             return hero;
         }
 
-        sprite CollideRight(sprite hero, Vector2 tileIndex, sprite playerPredictions)
+        sprite CollideRight(sprite hero, Vector2 tileIndex, sprite playerPrediction)
         {
             sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
-            if (IsColliding(playerPredictions, tile) == true && hero.velocity.X > 0)
+
+            if (IsColliding(playerPrediction, tile) == true && hero.velocity.X > 0)
             {
                 hero.position.X = tile.leftEdge - hero.width + hero.offSet.X;
                 hero.velocity.X = 0;
             }
-            return hero;
-        }
-
-        sprite CollideBelowDiagonals(sprite hero, Vector2 tileIndex, sprite playerPredictions)
-        {
-            sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
-            int leftEdgeDistance = Math.Abs(tile.leftEdge - playerPredictions.rightEdge);
-            int rightEdgeDistance = Math.Abs(tile.rightEdge - playerPredictions.leftEdge);
-            int topEdgeDistance = Math.Abs(tile.topEdge - playerPredictions.bottomEdge);
-            if (IsColliding(playerPredictions, tile) == true)
-            {
-                if (topEdgeDistance < rightEdgeDistance && topEdgeDistance < leftEdgeDistance)
-                {
-                    hero.position.Y = tile.topEdge - hero.height + hero.offSet.Y;
-                    hero.velocity.Y = 0;
-                }
-                else if (rightEdgeDistance < leftEdgeDistance)
-                {
-                    hero.position.X = tile.rightEdge + hero.offSet.X;
-                    hero.velocity.X = 0;
-                }
-                else
-                {
-                    hero.position.X = tile.leftEdge - hero.width + hero.offSet.X;
-                    hero.position.X = 0;
-                }
-            }
 
             return hero;
         }
 
-        sprite CollideAboveDiagonals(sprite hero, Vector2 tileIndex, sprite playerPredictions)
+        sprite CollideBottomDiagonals(sprite hero, Vector2 tileIndex, sprite playerPrediction)
         {
             sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
-            int leftEdgeDistance = Math.Abs(tile.rightEdge - playerPredictions.leftEdge);
-            int rightEdgeDistance = Math.Abs(tile.leftEdge - playerPredictions.rightEdge);
-            int bottomEdgeDistance = Math.Abs(tile.topEdge - playerPredictions.bottomEdge);
-            if (IsColliding(playerPredictions, tile) == true)
-            {
-                if (bottomEdgeDistance < rightEdgeDistance && bottomEdgeDistance < leftEdgeDistance)
-                {
-                    hero.position.Y = tile.bottomEdge + hero.offSet.Y;
-                    hero.velocity.Y = 0;
-                }
-                else if (rightEdgeDistance < leftEdgeDistance)
-                {
-                    hero.position.X = tile.rightEdge + hero.offSet.X;
-                    hero.velocity.X = 0;
-                }
-                else
-                {
-                    hero.position.X = tile.leftEdge + hero.offSet.X;
-                    hero.position.X = 0;
-                }
-            }
+            int leftEdgeDistance = Math.Abs(tile.leftEdge - playerPrediction.rightEdge);
+            int rightEdgeDistance = Math.Abs(tile.rightEdge - playerPrediction.leftEdge);
+            int topEdgeDistance = Math.Abs(tile.topEdge - playerPrediction.bottomEdge);
+            int bottomEdgeDistance = Math.Abs(tile.bottomEdge - playerPrediction.topEdge);
 
-            return hero;
-        }
-
-        sprite CollideAbove(sprite hero, Vector2 tileIndex, sprite playerPredictions)
-        {
-            sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
-            if (IsColliding(playerPredictions, tile) == true && hero.velocity.Y < 0)
+            if (topEdgeDistance > leftEdgeDistance && topEdgeDistance > rightEdgeDistance)
             {
-                hero.position.Y = tile.topEdge + hero.offSet.Y;
+                hero.position.Y = tile.bottomEdge + hero.offSet.Y;
                 hero.velocity.Y = 0;
             }
+            else if (leftEdgeDistance < rightEdgeDistance)
+            {
+                hero.position.X = tile.rightEdge + hero.offSet.X;
+                hero.velocity.X = 0;
+            }
+            else
+            {
+                hero.position.X = tile.leftEdge - hero.width + hero.offSet.X;
+                hero.velocity.X = 0;
+            }
+
             return hero;
         }
 
-        sprite CollideBelow(sprite hero, Vector2 tileIndex, sprite playerPredictions)
+        sprite CollideAboveDiagonals(sprite hero, Vector2 tileIndex, sprite playerPrediction)
         {
             sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
-            if (IsColliding(playerPredictions, tile) == true && hero.velocity.Y > 0)
+            int leftEdgeDistance = Math.Abs(tile.leftEdge - playerPrediction.rightEdge);
+            int rightEdgeDistance = Math.Abs(tile.rightEdge - playerPrediction.leftEdge);
+            int topEdgeDistance = Math.Abs(tile.topEdge - playerPrediction.bottomEdge);
+            int bottomEdgeDistance = Math.Abs(tile.bottomEdge - playerPrediction.topEdge);
+
+            if (bottomEdgeDistance < leftEdgeDistance && bottomEdgeDistance < rightEdgeDistance)
             {
-                hero.position.Y = tile.bottomEdge - hero.height + hero.offSet.Y;
+                hero.position.Y = tile.bottomEdge + hero.offSet.Y;
                 hero.velocity.Y = 0;
             }
+            else if (leftEdgeDistance < rightEdgeDistance)
+            {
+                hero.position.X = tile.rightEdge + hero.offSet.X;
+                hero.velocity.X = 0;
+            }
+            else
+            {
+                hero.position.X = tile.leftEdge - hero.width + hero.offSet.X;
+                hero.velocity.X = 0;
+            }
+
             return hero;
         }
 
-        public sprite CollideWithPlatform(sprite hero, float deltaTime)
+        sprite CollideAbove(sprite hero, Vector2 tileIndex, sprite playerPrediction)
         {
+            sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
+
+            if (IsColliding(playerPrediction, tile) == true && hero.velocity.Y < 0)
+            {
+                hero.position.Y = tile.bottomEdge + hero.offSet.Y;
+                hero.velocity.Y = 0;
+            }
+
+            return hero;
+        }
+
+        sprite CollideBelow(sprite hero, Vector2 tileIndex, sprite playerPrediction)
+        {
+            sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
+            if (IsColliding(playerPrediction, tile) == true && hero.velocity.Y > 0)
+            {
+                hero.position.Y = tile.topEdge - hero.height + hero.offSet.Y;
+            }
+
+            return hero;
+        }
+        public sprite CollideWithPlatforms(sprite hero, float deltaTime)
+        {
+            //Create a copy of the hero that will move to where the hero will be in the naxt frame
             sprite playerPrediction = new sprite();
             playerPrediction.position = hero.position;
             playerPrediction.width = hero.width;
@@ -172,13 +175,12 @@ namespace Game1
             Vector2 bottomTile = new Vector2(playerTile.X, playerTile.Y + 1);
 
             Vector2 bottomLeftTile = new Vector2(playerTile.X - 1, playerTile.Y + 1);
-            Vector2 bottomRightTile = new Vector2(playerTile.X + 1, playerTile.Y - 1);
-            Vector2 topLeftTile = new Vector2(playerTile.X + 1, playerTile.Y - 1);
-            Vector2 topRightTile = new Vector2(playerTile.X - 1, playerTile.Y + 1);
-            //this allows us to predict if te hero will be overlaping an obsticle in the next frame
-
-            bool LeftCheck = CheckForTile(leftTile);
-            bool RightCheck = CheckForTile(rightTile);
+            Vector2 bottomRightTile = new Vector2(playerTile.X + 1, playerTile.Y + 1);
+            Vector2 topLeftTile = new Vector2(playerTile.X - 1, playerTile.Y - 1);
+            Vector2 topRightTile = new Vector2(playerTile.X + 1, playerTile.Y - 1);
+            // ....This allows us to predict if the hero will be overlapping an obstacle
+            bool leftCheck = CheckForTile(leftTile);
+            bool rightCheck = CheckForTile(rightTile);
             bool topCheck = CheckForTile(topTile);
             bool bottomCheck = CheckForTile(bottomTile);
 
@@ -186,29 +188,41 @@ namespace Game1
             bool bottomRightCheck = CheckForTile(bottomRightTile);
             bool topLeftCheck = CheckForTile(topLeftTile);
             bool topRightCheck = CheckForTile(topRightTile);
-
-            if(LeftCheck == true) //checks all collisions on the left side of the player
+            if (leftCheck == true) // check for collisions with the tiles left of the player
             {
                 hero = CollideLeft(hero, leftTile, playerPrediction);
             }
 
-            if (RightCheck == true) //checks all collisions on the right side of the player
+            if (rightCheck == true)
             {
                 hero = CollideRight(hero, rightTile, playerPrediction);
             }
-
-            if (topCheck == true) //checks all collisions above the player
-            {
-                hero = CollideAbove(hero, topTile, playerPrediction);
-            }
-
-            if (bottomCheck == true) //checks all collisions below the player
+            if (bottomCheck == true)
             {
                 hero = CollideBelow(hero, bottomTile, playerPrediction);
             }
-
+            if (topCheck == true)
+            {
+                hero = CollideAbove(hero, topTile, playerPrediction);
+            }
+            if (leftCheck == false && bottomCheck == false && bottomLeftCheck == true)
+            {
+                hero = CollideBottomDiagonals(hero, bottomLeftTile, playerPrediction);
+            }
+            if (rightCheck == false && bottomCheck == false && bottomRightCheck == true)
+            {
+                hero = CollideBottomDiagonals(hero, bottomRightTile, playerPrediction);
+            }
+            if(leftCheck == false && topCheck == false && topLeftCheck == true)
+            {
+                hero = CollideAboveDiagonals(hero, topLeftTile, playerPrediction);
+            }
+            if(rightCheck == false && topCheck == false && topRightCheck == true)
+            {
+                hero = CollideAboveDiagonals(hero, topRightTile, playerPrediction);
+            }
             return hero;
         }
-
     }
 }
+

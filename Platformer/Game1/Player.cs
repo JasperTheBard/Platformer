@@ -66,7 +66,7 @@ namespace Game1
             playerSprite.position += playerSprite.velocity * deltaTime;
 
             collision.game = game;
-            playerSprite = collision.CollideWithPlatform(playerSprite, deltaTime);
+            playerSprite = collision.CollideWithPlatforms(playerSprite, deltaTime);
         }
 
         public void Update(float deltaTime)

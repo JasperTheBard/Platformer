@@ -50,7 +50,7 @@ namespace Game1
         public void UpdateHitBox()
         {
             leftEdge = (int)position.X - (int)offSet.X;
-            rightEdge = (int)position.X + width;
+            rightEdge = leftEdge + width;
             topEdge = (int)position.Y - (int)offSet.Y;
             bottomEdge = topEdge + height;
         }

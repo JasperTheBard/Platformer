@@ -37,8 +37,8 @@ namespace Game1
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            //graphics.PreferredBackBufferHeight = 900;
-            //graphics.PreferredBackBufferWidth = 1600;
+            graphics.PreferredBackBufferHeight = 900;
+            graphics.PreferredBackBufferWidth = 1600;
         }
 
         protected override void Initialize()
@@ -57,7 +57,14 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             player.Load(Content, this); //call the 'Load' function in the player class
-            BoxingViewportAdapter viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, graphics.GraphicsDevice.Viewport.Height, graphics.GraphicsDevice.Viewport.Width);
+            BoxingViewportAdapter viewportAdapter = new BoxingViewportAdapter(Window, 
+                                                                              GraphicsDevice, 
+                                                                              graphics.GraphicsDevice.Viewport.Width * 2, 
+                                                                              graphics.GraphicsDevice.Viewport.Height * 2);
+            //BoxingViewportAdapter viewportAdapter = new BoxingViewportAdapter(Window, 
+            //                                                                  GraphicsDevice, 
+            //                                                                  graphics.GraphicsDevice.Viewport.Height, 
+            //                                                                  graphics.GraphicsDevice.Viewport.Width);
 
             camera = new Camera2D(viewportAdapter);
             camera.Position = new Vector2(0, graphics.GraphicsDevice.Viewport.Height);
@@ -122,7 +129,8 @@ namespace Game1
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             player.Update(deltaTime); //call the 'Update' function from the player class
 
-            camera.Position = player.playerSprite.position - new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
+            camera.Position = player.playerSprite.position - new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, 
+                                                                         graphics.GraphicsDevice.Viewport.Height / 2);
 
             base.Update(gameTime);
         }
@@ -132,7 +140,9 @@ namespace Game1
             GraphicsDevice.Clear(Color.Gray);
 
             var viewMatrix = camera.GetViewMatrix();
-            var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, 0, 0.0f, -1.0f);
+            var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, GraphicsDevice.Viewport.Width, 
+                                                                      GraphicsDevice.Viewport.Height, 0,
+                                                                      0.0f, -1.0f);
 
             spriteBatch.Begin(transformMatrix: viewMatrix);
 
