@@ -15,6 +15,7 @@ namespace Game1
         public Vector2 position = Vector2.Zero;
         public Vector2 velocity = Vector2.Zero;
         public Vector2 offSet = Vector2.Zero;
+        public bool canJump = false;
 
         Texture2D texture;
 
@@ -27,6 +28,11 @@ namespace Game1
         public int topEdge = 0;
         public int bottomEdge = 0;
 
+        List<AnimatedTexture> animations = new List<AnimatedTexture>();
+        List<Vector2> animationOffSet = new List<Vector2>();
+        int currentAnimation = 0;
+
+        SpriteEffects effects = SpriteEffects.None;
 
         public sprite()
         {
@@ -55,14 +61,45 @@ namespace Game1
             bottomEdge = topEdge + height;
         }
 
+        public void AddAnimation(AnimatedTexture animation, int xOffSet = 0, int yOffSet = 0)
+        {
+            animations.Add(animation);
+            animationOffSet.Add(new Vector2(xOffSet, yOffSet));
+
+
+
+        }
+
         public void Update(float deltaTime)
         {
-
+            animations[currentAnimation].UpdateFrame(deltaTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position - offSet, Color.White);
+            //spriteBatch.Draw(texture, position - offSet, Color.White);
+            animations[currentAnimation].DrawFrame(spriteBatch, position + animationOffSet[currentAnimation], effects);
+        }
+
+        public void SetFlipped(bool state)
+        {
+            if(state == true)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
+            else
+            {
+                effects = SpriteEffects.None;
+            }
+        }
+
+        public void Pause()
+        {
+            animations[currentAnimation].Pause();
+        }
+        public void Play()
+        {
+            animations[currentAnimation].Play();
         }
     }
 }

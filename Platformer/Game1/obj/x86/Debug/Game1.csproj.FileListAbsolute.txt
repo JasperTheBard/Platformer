@@ -63,3 +63,11 @@ C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\De
 C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.xml
 C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Newtonsoft.Json.xml
 C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\Level1.xnb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\walk.xnb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\heart.xnb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\DeathTheme.xnb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\GameTheme.wma
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\GameTheme.xnb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\JumpNoise.xnb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\chest.xnb
+C:\Users\s171965\Documents\GitHub\Platformer\Platformer\Game1\bin\Windows\x86\Debug\Content\zombie.xnb

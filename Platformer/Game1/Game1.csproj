@@ -41,7 +41,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AnimatedTexture.cs" />
+    <Compile Include="Chest.cs" />
     <Compile Include="Collision.cs" />
+    <Compile Include="Enemie.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
@@ -68,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\walk.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

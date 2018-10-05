@@ -75,60 +75,6 @@ namespace Game1
             return hero;
         }
 
-        sprite CollideBottomDiagonals(sprite hero, Vector2 tileIndex, sprite playerPrediction)
-        {
-            sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
-            int leftEdgeDistance = Math.Abs(tile.leftEdge - playerPrediction.rightEdge);
-            int rightEdgeDistance = Math.Abs(tile.rightEdge - playerPrediction.leftEdge);
-            int topEdgeDistance = Math.Abs(tile.topEdge - playerPrediction.bottomEdge);
-            int bottomEdgeDistance = Math.Abs(tile.bottomEdge - playerPrediction.topEdge);
-
-            if (topEdgeDistance > leftEdgeDistance && topEdgeDistance > rightEdgeDistance)
-            {
-                hero.position.Y = tile.bottomEdge + hero.offSet.Y;
-                hero.velocity.Y = 0;
-            }
-            else if (leftEdgeDistance < rightEdgeDistance)
-            {
-                hero.position.X = tile.rightEdge + hero.offSet.X;
-                hero.velocity.X = 0;
-            }
-            else
-            {
-                hero.position.X = tile.leftEdge - hero.width + hero.offSet.X;
-                hero.velocity.X = 0;
-            }
-
-            return hero;
-        }
-
-        sprite CollideAboveDiagonals(sprite hero, Vector2 tileIndex, sprite playerPrediction)
-        {
-            sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
-            int leftEdgeDistance = Math.Abs(tile.leftEdge - playerPrediction.rightEdge);
-            int rightEdgeDistance = Math.Abs(tile.rightEdge - playerPrediction.leftEdge);
-            int topEdgeDistance = Math.Abs(tile.topEdge - playerPrediction.bottomEdge);
-            int bottomEdgeDistance = Math.Abs(tile.bottomEdge - playerPrediction.topEdge);
-
-            if (bottomEdgeDistance < leftEdgeDistance && bottomEdgeDistance < rightEdgeDistance)
-            {
-                hero.position.Y = tile.bottomEdge + hero.offSet.Y;
-                hero.velocity.Y = 0;
-            }
-            else if (leftEdgeDistance < rightEdgeDistance)
-            {
-                hero.position.X = tile.rightEdge + hero.offSet.X;
-                hero.velocity.X = 0;
-            }
-            else
-            {
-                hero.position.X = tile.leftEdge - hero.width + hero.offSet.X;
-                hero.velocity.X = 0;
-            }
-
-            return hero;
-        }
-
         sprite CollideAbove(sprite hero, Vector2 tileIndex, sprite playerPrediction)
         {
             sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
@@ -148,10 +94,78 @@ namespace Game1
             if (IsColliding(playerPrediction, tile) == true && hero.velocity.Y > 0)
             {
                 hero.position.Y = tile.topEdge - hero.height + hero.offSet.Y;
+                hero.canJump = true;
             }
 
             return hero;
         }
+
+        sprite CollideBottomDiagonals(sprite hero, Vector2 tileIndex, sprite playerPrediction)
+        {
+            sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
+            int leftEdgeDistance = Math.Abs(tile.leftEdge - playerPrediction.rightEdge);
+            int rightEdgeDistance = Math.Abs(tile.rightEdge - playerPrediction.leftEdge);
+            int topEdgeDistance = Math.Abs(tile.topEdge - playerPrediction.bottomEdge);
+            int bottomEdgeDistance = Math.Abs(tile.bottomEdge - playerPrediction.topEdge);
+
+            if (IsColliding(playerPrediction, tile) == true)
+            {
+                if (topEdgeDistance < rightEdgeDistance && topEdgeDistance < leftEdgeDistance)
+                {
+                    
+                    hero.position.Y = tile.topEdge - hero.height + hero.offSet.Y;
+                    hero.canJump = true;
+                    hero.velocity.Y = 0;
+
+                }
+                else if (rightEdgeDistance < leftEdgeDistance)
+                {
+                    
+                    hero.position.X = tile.rightEdge + hero.offSet.X;
+                    //hero.velocity.X = 0;
+                }
+                else
+                {
+                   
+                    hero.position.X = tile.leftEdge - hero.width + hero.offSet.X;
+                    //hero.velocity.X = 0;
+                }
+            }
+
+            return hero;
+        }
+
+        sprite CollideAboveDiagonals(sprite hero, Vector2 tileIndex, sprite playerPrediction)
+        {
+            sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
+            int leftEdgeDistance = Math.Abs(tile.leftEdge - playerPrediction.rightEdge);
+            int rightEdgeDistance = Math.Abs(tile.rightEdge - playerPrediction.leftEdge);
+            int topEdgeDistance = Math.Abs(tile.topEdge - playerPrediction.bottomEdge);
+            int bottomEdgeDistance = Math.Abs(tile.bottomEdge - playerPrediction.topEdge);
+
+            if (IsColliding(playerPrediction, tile) == true)
+            {
+                if (bottomEdgeDistance < leftEdgeDistance && bottomEdgeDistance < rightEdgeDistance)
+                {
+                    hero.position.Y = tile.bottomEdge + hero.offSet.Y;
+                    //hero.velocity.Y = 0;
+                }
+                else if (leftEdgeDistance < rightEdgeDistance)
+                {
+                    hero.position.X = tile.rightEdge + hero.offSet.X;
+                    //hero.velocity.X = 0;
+                }
+                else
+                {
+                    hero.position.X = tile.leftEdge - hero.width + hero.offSet.X;
+                    //hero.velocity.X = 0;
+                }
+            }
+               
+
+            return hero;
+        }
+
         public sprite CollideWithPlatforms(sprite hero, float deltaTime)
         {
             //Create a copy of the hero that will move to where the hero will be in the naxt frame
@@ -223,6 +237,41 @@ namespace Game1
             }
             return hero;
         }
+
+        public sprite CollideWithMonster(Player hero, Enemie monster, float deltaTime, Game1 theGame)
+        {
+            sprite playerPrediction = new sprite();
+            playerPrediction.position = hero.playerSprite.position;
+            playerPrediction.width = hero.playerSprite.width;
+            playerPrediction.height = hero.playerSprite.height;
+            playerPrediction.offSet = hero.playerSprite.offSet;
+            playerPrediction.UpdateHitBox();
+
+            playerPrediction.position += hero.playerSprite.velocity * deltaTime;
+            if (IsColliding(hero.playerSprite, monster.enemieSprite))
+            {
+                int leftEdgeDistance = Math.Abs(monster.enemieSprite.leftEdge - playerPrediction.rightEdge);
+                int rightEdgeDistance = Math.Abs(monster.enemieSprite.rightEdge - playerPrediction.leftEdge);
+                int topEdgeDistance = Math.Abs(monster.enemieSprite.topEdge - playerPrediction.bottomEdge);
+                int bottomEdgeDistance = Math.Abs(monster.enemieSprite.bottomEdge - playerPrediction.topEdge);
+
+                if (topEdgeDistance < leftEdgeDistance && topEdgeDistance < rightEdgeDistance && topEdgeDistance < bottomEdgeDistance)
+                {
+                    //kill enemy
+                    theGame.enemies.Remove(monster);
+                    hero.playerSprite.velocity.Y -= hero.jumpStrength * deltaTime;
+                    hero.playerSprite.canJump = false;
+                }
+                else
+                {
+                    //kill player
+                      theGame.Exit();
+                }
+            }
+            
+            return hero.playerSprite;
+        }
+
     }
 }
 

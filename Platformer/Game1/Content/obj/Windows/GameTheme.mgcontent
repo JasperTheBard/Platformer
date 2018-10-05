@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/GameTheme.ogg</SourceFile>
+  <SourceTime>2018-10-05T09:20:06.7650438+10:00</SourceTime>
+  <DestFile>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/bin/Windows/GameTheme.xnb</DestFile>
+  <DestTime>2018-10-05T16:02:08.5054085+10:00</DestTime>
+  <Importer>OggImporter</Importer>
+  <ImporterTime>2017-03-02T02:05:36+11:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2017-03-02T02:05:36+11:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/bin/Windows/GameTheme.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>

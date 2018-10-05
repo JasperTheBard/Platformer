@@ -8,5 +8,12 @@
     <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/Font.spritefont</File>
     <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/Level1.tmx</File>
     <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/Tileset.png</File>
+    <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/walk.png</File>
+    <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/heart.png</File>
+    <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/DeathTheme.wav</File>
+    <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/GameTheme.ogg</File>
+    <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/JumpNoise.wav</File>
+    <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/chest.png</File>
+    <File>C:/Users/s171965/Documents/GitHub/Platformer/Platformer/Game1/Content/zombie.png</File>
   </SourceFiles>
 </SourceFileCollection>
