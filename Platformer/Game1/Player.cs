@@ -145,7 +145,7 @@ namespace Game1
             if (collision.IsColliding(playerSprite, game.goal.chestSprite))
             {
                 game.Exit();
-                int temp = 1;
+                //int temp = 1;
             }
             for (int i = 0; i < game.enemies.Count; i++)
             {

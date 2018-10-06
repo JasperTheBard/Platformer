@@ -90,6 +90,7 @@ namespace Game1
 
         sprite CollideBelow(sprite hero, Vector2 tileIndex, sprite playerPrediction)
         {
+
             sprite tile = game.levelGrid[(int)tileIndex.X, (int)tileIndex.Y];
             if (IsColliding(playerPrediction, tile) == true && hero.velocity.Y > 0)
             {
